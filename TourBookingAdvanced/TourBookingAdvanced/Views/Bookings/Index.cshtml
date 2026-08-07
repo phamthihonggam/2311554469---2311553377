@@ -1,0 +1,260 @@
+@model TourBookingAdvanced.ViewModels.BookingSearchViewModel
+
+@{
+    ViewData["Title"] = "Bookings";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold text-primary">
+                <i class="bi bi-airplane-fill"></i>
+                Tour Bookings
+            </h2>
+
+            <p class="text-muted mb-0">
+                Manage all customer bookings
+            </p>
+
+        </div>
+
+        <a asp-action="Create" class="btn btn-success btn-lg">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Create Booking
+
+        </a>
+
+    </div>
+
+    <!-- Dashboard -->
+
+    <div class="row mb-4">
+
+        <div class="col-md-6">
+
+            <div class="card bg-primary text-white shadow">
+
+                <div class="card-body text-center">
+
+                    <h2>@Model.TotalBookings</h2>
+
+                    <p class="mb-0">
+                        Total Bookings
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="card bg-success text-white shadow">
+
+                <div class="card-body text-center">
+
+                    <h2>@Model.TotalRevenue.ToString("N0") VNĐ</h2>
+
+                    <p class="mb-0">
+                        Total Revenue
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Search -->
+
+    <div class="card shadow border-0 mb-4">
+
+        <div class="card-body">
+
+            <form asp-action="Index" method="get">
+
+                <div class="row">
+
+                    <div class="col-md-4">
+
+                        <input asp-for="Keyword"
+                               class="form-control"
+                               placeholder="Customer Name..." />
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <input asp-for="MinAmount"
+                               class="form-control"
+                               placeholder="Min Amount" />
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <input asp-for="MaxAmount"
+                               class="form-control"
+                               placeholder="Max Amount" />
+
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <button class="btn btn-primary w-100">
+
+                            <i class="bi bi-search"></i>
+
+                            Search
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Table -->
+
+    <div class="card shadow border-0">
+
+        <div class="card-body">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-primary">
+
+                    <tr>
+
+                        <th width="70">#</th>
+
+                        <th>Customer</th>
+
+                        <th>Booking Date</th>
+
+                        <th>Passengers</th>
+
+                        <th>Total Amount</th>
+
+                        <th width="250">Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @if (Model.Bookings.Any())
+                    {
+                        foreach (var item in Model.Bookings)
+                        {
+                            <tr>
+
+                                <td>
+                                    <strong>#@item.Id</strong>
+                                </td>
+
+                                <td>
+                                    @item.CustomerName
+                                </td>
+
+                                <td>
+                                    @item.BookingDate?.ToString("dd/MM/yyyy")
+                                </td>
+
+                                <td>
+
+                                    <span class="badge bg-info">
+
+                                        @item.TotalPassengers
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="badge bg-success">
+
+                                        @item.TotalAmount?.ToString("N0") VNĐ
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <div class="d-flex gap-2">
+
+                                        <a asp-action="Edit"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-warning btn-sm">
+
+                                            <i class="bi bi-pencil-fill"></i>
+
+                                            Edit
+
+                                        </a>
+
+                                        <a asp-action="Details"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-info btn-sm text-white">
+
+                                            <i class="bi bi-eye-fill"></i>
+
+                                            Details
+
+                                        </a>
+
+                                        <a asp-action="Delete"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-danger btn-sm">
+
+                                            <i class="bi bi-trash-fill"></i>
+
+                                            Delete
+
+                                        </a>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+
+                            <td colspan="6" class="text-center text-muted">
+
+                                No bookings found.
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

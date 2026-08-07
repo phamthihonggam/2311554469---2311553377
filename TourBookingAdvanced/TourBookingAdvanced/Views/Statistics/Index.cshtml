@@ -1,0 +1,110 @@
+﻿@model TourBookingAdvanced.ViewModels.StatisticsViewModel
+
+@{
+    ViewData["Title"] = "Statistics";
+}
+
+<div class="container mt-4">
+
+    <h2 class="text-primary mb-4">
+        📊 Tour Booking Statistics
+    </h2>
+
+    <div class="row mb-4">
+
+        <div class="col-md-6">
+
+            <div class="card bg-success text-white shadow">
+
+                <div class="card-body text-center">
+
+                    <h2>@Model.TotalRevenue.ToString("N0") VNĐ</h2>
+
+                    <p>Total Revenue</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="card bg-primary text-white shadow">
+
+                <div class="card-body text-center">
+
+                    <h2>@Model.TotalBookings</h2>
+
+                    <p>Total Bookings</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow">
+
+        <div class="card-header bg-info text-white">
+
+            <h4 class="mb-0">
+                🏆 Top 3 Most Booked Tours
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-striped">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Rank</th>
+
+                        <th>Tour</th>
+
+                        <th>Total Passengers</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @{
+                        int rank = 1;
+                    }
+
+                    @foreach (var item in Model.TopTours)
+                    {
+                        <tr>
+
+                            <td>@rank</td>
+
+                            <td>@item.TourName</td>
+
+                            <td>
+                                <span class="badge bg-success">
+                                    @item.TotalPassengers
+                                </span>
+                            </td>
+
+                        </tr>
+
+                        rank++;
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

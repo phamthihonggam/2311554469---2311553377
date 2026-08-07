@@ -1,0 +1,203 @@
+@model TourBookingAdvanced.Models.Tour
+
+@{
+    ViewData["Title"] = "Delete Tour";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-danger text-white">
+
+            <h3 class="mb-0">
+
+                <i class="bi bi-trash-fill"></i>
+
+                Delete Tour
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="alert alert-danger">
+
+                <h5>
+
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+
+                    Are you sure you want to delete this tour?
+
+                </h5>
+
+                <p class="mb-0">
+
+                    This action cannot be undone.
+
+                </p>
+
+            </div>
+
+            <div class="row">
+
+                <!-- Images -->
+
+                <div class="col-md-5">
+
+                    @if (!string.IsNullOrWhiteSpace(Model.ImagePaths))
+                    {
+                        foreach (var img in Model.ImagePaths.Split(';',
+                                 StringSplitOptions.RemoveEmptyEntries))
+                        {
+                            <img src="~/uploads/tours/@img"
+                                 class="img-fluid rounded border mb-3"
+                                 style="width:100%;max-height:250px;object-fit:cover;" />
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-secondary text-center">
+
+                            No Images
+
+                        </div>
+                    }
+
+                </div>
+
+                <!-- Tour Information -->
+
+                <div class="col-md-7">
+
+                    <table class="table table-bordered">
+
+                        <tr>
+
+                            <th width="180">
+
+                                Tour ID
+
+                            </th>
+
+                            <td>
+
+                                #@Model.Id
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+
+                                Tour Name
+
+                            </th>
+
+                            <td>
+
+                                @Model.TourName
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+
+                                Price
+
+                            </th>
+
+                            <td>
+
+                                <span class="badge bg-success fs-6">
+
+                                    @Model.Price.ToString("N0") VNĐ
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+
+                                Available Slots
+
+                            </th>
+
+                            <td>
+
+                                <span class="badge bg-info fs-6">
+
+                                    @Model.AvailableSlots
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+
+                                Category
+
+                            </th>
+
+                            <td>
+
+                                @Model.Category?.Name
+
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-footer text-end">
+
+            <form asp-action="Delete">
+
+                <input type="hidden"
+                       asp-for="Id" />
+
+                <button type="submit"
+                        class="btn btn-danger">
+
+                    <i class="bi bi-trash-fill"></i>
+
+                    Delete
+
+                </button>
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Cancel
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

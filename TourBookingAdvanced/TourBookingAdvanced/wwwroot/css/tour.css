@@ -1,0 +1,47 @@
+﻿body {
+    background: #f5f7fb;
+}
+
+.card {
+    border: none;
+    border-radius: 18px;
+}
+
+.table {
+    vertical-align: middle;
+}
+
+    .table img {
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+.btn {
+    border-radius: 10px;
+}
+
+.badge {
+    font-size: 14px;
+}
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+}
+
+.card-header {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.table-hover tbody tr:hover {
+    background: #eef7ff;
+}
+
+.navbar {
+    box-shadow: 0 5px 12px rgba(0,0,0,.1);
+}
+
+.footer {
+    margin-top: 50px;
+}

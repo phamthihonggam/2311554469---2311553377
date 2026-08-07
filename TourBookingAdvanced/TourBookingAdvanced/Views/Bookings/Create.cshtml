@@ -1,0 +1,100 @@
+@model TourBookingAdvanced.ViewModels.CreateBookingViewModel
+
+@{
+    ViewData["Title"] = "Create Booking";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-lg border-0">
+
+        <div class="card-header bg-success text-white">
+
+            <h3 class="mb-0">
+
+                <i class="bi bi-plus-circle"></i>
+
+                Create Booking
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="Create">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+
+                    <label asp-for="CustomerName"
+                           class="form-label"></label>
+
+                    <input asp-for="CustomerName"
+                           class="form-control" />
+
+                    <span asp-validation-for="CustomerName"
+                          class="text-danger"></span>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Tour
+
+                    </label>
+
+                    <select asp-for="TourId"
+                            asp-items="Model.Tours"
+                            class="form-select">
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label asp-for="PassengersCount"
+                           class="form-label"></label>
+
+                    <input asp-for="PassengersCount"
+                           class="form-control" />
+
+                    <span asp-validation-for="PassengersCount"
+                          class="text-danger"></span>
+
+                </div>
+
+                <button class="btn btn-success">
+
+                    <i class="bi bi-check-circle"></i>
+
+                    Book Tour
+
+                </button>
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}

@@ -1,0 +1,179 @@
+@model TourBookingAdvanced.Models.Tour
+
+@{
+    ViewData["Title"] = "Tour Details";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-info text-white">
+
+            <h3 class="mb-0">
+
+                <i class="bi bi-eye-fill"></i>
+
+                Tour Details
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <!-- Images -->
+
+                <div class="col-md-5">
+
+                    @if (!string.IsNullOrWhiteSpace(Model.ImagePaths))
+                    {
+                        foreach (var img in Model.ImagePaths.Split(';',
+                                 StringSplitOptions.RemoveEmptyEntries))
+                        {
+                            <img src="~/uploads/tours/@img"
+                                 class="img-fluid rounded border mb-3"
+                                 style="width:100%;max-height:250px;object-fit:cover;" />
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-secondary text-center">
+
+                            No Images
+
+                        </div>
+                    }
+
+                </div>
+
+                <!-- Information -->
+
+                <div class="col-md-7">
+
+                    <table class="table table-bordered">
+
+                        <tr>
+
+                            <th width="180">
+
+                                Tour ID
+
+                            </th>
+
+                            <td>
+
+                                #@Model.Id
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+
+                                Tour Name
+
+                            </th>
+
+                            <td>
+
+                                @Model.TourName
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+
+                                Price
+
+                            </th>
+
+                            <td>
+
+                                <span class="badge bg-success fs-6">
+
+                                    @Model.Price.ToString("N0") VNĐ
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+
+                                Available Slots
+
+                            </th>
+
+                            <td>
+
+                                <span class="badge bg-info fs-6">
+
+                                    @Model.AvailableSlots
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+
+                                Category
+
+                            </th>
+
+                            <td>
+
+                                @Model.Category?.Name
+
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-footer text-end">
+
+            <a asp-action="Edit"
+               asp-route-id="@Model.Id"
+               class="btn btn-warning">
+
+                <i class="bi bi-pencil-fill"></i>
+
+                Edit
+
+            </a>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

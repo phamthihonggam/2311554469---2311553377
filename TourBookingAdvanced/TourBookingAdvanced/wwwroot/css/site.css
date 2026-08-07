@@ -29,3 +29,23 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+.card {
+    border-radius: 18px;
+}
+
+.card-header {
+    border-radius: 18px 18px 0 0 !important;
+}
+
+.form-control,
+.form-select {
+    border-radius: 12px;
+}
+
+.btn {
+    border-radius: 10px;
+}
+
+.input-group-text {
+    font-weight: 600;
+}
